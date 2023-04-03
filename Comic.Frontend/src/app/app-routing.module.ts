@@ -8,8 +8,12 @@ const routes: Routes = [
     component: ErrorPageComponent
   },
   {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
+  {
     path: '**',
-    component: ErrorPageComponent
+    redirectTo: '404'
   }
 ]
 
