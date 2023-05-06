@@ -16,6 +16,11 @@ const routes: Routes = [
     loadChildren: () => import('./character/character.module').then(m => m.CharacterModule)
   },
   {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'character'
+  },
+  {
     path: '**',
     redirectTo: '404'
   }

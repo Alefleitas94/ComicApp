@@ -4,9 +4,11 @@ import { HeroListComponent } from './pages/hero-list/hero-list.component';
 import { AddComponent } from './pages/add/add.component';
 import { SearchComponent } from './pages/search/search.component';
 import { CharacterComponent } from './pages/character/character.component';
+import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [{
   path: '',
+  component: HomeComponent,
   children: [
     {
       path: 'list',
