@@ -6,6 +6,7 @@ import { CharacterComponent } from './pages/character/character.component';
 import { HomeComponent } from './pages/home/home.component';
 import { HeroListComponent } from './pages/hero-list/hero-list.component';
 import { CharacterRoutingModule } from './character-routing.module';
+import { MaterialModule } from '../material/material.module';
 
 
 
@@ -19,7 +20,8 @@ import { CharacterRoutingModule } from './character-routing.module';
   ],
   imports: [
     CommonModule,
-    CharacterRoutingModule
+    CharacterRoutingModule,
+    MaterialModule
   ]
 })
 export class CharacterModule { }
