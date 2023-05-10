@@ -1,3 +1,12 @@
+using Comic.Backend.Repository;
+using Comic.Backend.Repository.Interface;
+using Comic.Backend.Service;
+using Comic.Backend.Service.Interface;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.Extensions.Configuration;
+using System.Data.SqlClient;
+using System.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +15,12 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IHeroService, HeroService>();
+builder.Services.AddScoped<IHeroRepository, HeroRepository>();
+builder.Services.AddTransient<IDbConnection>(c =>
+    new SqlConnection(builder.Configuration.GetConnectionString("mssql_db")));
+
+Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;
 
 var app = builder.Build();
 
@@ -15,6 +30,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(options => options
+        .AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader());
+
 
 app.UseHttpsRedirection();
 

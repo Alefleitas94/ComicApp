@@ -31,3 +31,10 @@ C:\Users\alefl\OneDrive\Desktop\Codigo\Proyectos\ComicApp\Comic.Backend\obj\Debu
 C:\Users\alefl\OneDrive\Desktop\Codigo\Proyectos\ComicApp\Comic.Backend\obj\Debug\net7.0\Comic.Backend.pdb
 C:\Users\alefl\OneDrive\Desktop\Codigo\Proyectos\ComicApp\Comic.Backend\obj\Debug\net7.0\Comic.Backend.genruntimeconfig.cache
 C:\Users\alefl\OneDrive\Desktop\Codigo\Proyectos\ComicApp\Comic.Backend\obj\Debug\net7.0\ref\Comic.Backend.dll
+C:\Users\alefl\OneDrive\Desktop\Codigo\Proyectos\ComicApp\Comic.Backend\bin\Debug\net7.0\Dapper.dll
+C:\Users\alefl\OneDrive\Desktop\Codigo\Proyectos\ComicApp\Comic.Backend\bin\Debug\net7.0\System.Data.SqlClient.dll
+C:\Users\alefl\OneDrive\Desktop\Codigo\Proyectos\ComicApp\Comic.Backend\bin\Debug\net7.0\runtimes\win-arm64\native\sni.dll
+C:\Users\alefl\OneDrive\Desktop\Codigo\Proyectos\ComicApp\Comic.Backend\bin\Debug\net7.0\runtimes\win-x64\native\sni.dll
+C:\Users\alefl\OneDrive\Desktop\Codigo\Proyectos\ComicApp\Comic.Backend\bin\Debug\net7.0\runtimes\win-x86\native\sni.dll
+C:\Users\alefl\OneDrive\Desktop\Codigo\Proyectos\ComicApp\Comic.Backend\bin\Debug\net7.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\alefl\OneDrive\Desktop\Codigo\Proyectos\ComicApp\Comic.Backend\bin\Debug\net7.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll

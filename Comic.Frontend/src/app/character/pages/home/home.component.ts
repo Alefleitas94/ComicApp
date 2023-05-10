@@ -5,5 +5,9 @@ import { Component } from '@angular/core';
   templateUrl: './home.component.html'
 })
 export class HomeComponent {
-
+  public sidebarItems = [
+    { label: 'List', icon: 'label', url: './list' },
+    { label: 'Add', icon: 'add', url: './add' },
+    { label: 'Search', icon: 'search', url: './search' },
+  ]
 }

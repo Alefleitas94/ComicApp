@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Comic.Backend.Model;
+using Comic.Backend.Model.Filter;
+using Comic.Backend.Service.Interface;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,36 +11,37 @@ namespace Comic.Backend.Controllers
     [ApiController]
     public class ComicController : ControllerBase
     {
-        // GET: api/<ValuesController>
+        private IConfiguration _configuration;
+        private readonly IHeroService _heroService;
+        public ComicController(IConfiguration configuration,
+            IHeroService heroService
+            )
+        {
+            _configuration = configuration;
+            _heroService = heroService;
+        }
+
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<ActionResult<IEnumerable<Hero>>> GetAll([FromQuery]HeroFilter filter = null)
         {
-            return new string[] { "value1", "value2" };
+            var products = await _heroService.GetAllAsync(filter);
+            return Ok(products);
         }
 
-        // GET api/<ValuesController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<ActionResult<Hero>> GetById(int id)
         {
-            return "value";
-        }
-
-        // POST api/<ValuesController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<ValuesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<ValuesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            var product = await _heroService.GetByIdAsync(id);
+            if (product == null)
+            {
+                return Ok(product);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
     }
 }
+
