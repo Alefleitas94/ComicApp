@@ -8,6 +8,7 @@
         public string Publisher { get; set; }
         public string FirstAppearance { get; set; }
         public DateTime CreatedAt { get; set; }
+        public string Image { get; set; }
     }
 
 }

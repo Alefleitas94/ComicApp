@@ -7,6 +7,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { CharacterRoutingModule } from './character-routing.module';
 import { MaterialModule } from '../material/material.module';
 import { ListComponent } from './pages/list/list.component';
+import { CardComponent } from './components/card/card.component';
 
 
 
@@ -16,7 +17,8 @@ import { ListComponent } from './pages/list/list.component';
     SearchComponent,
     CharacterComponent,
     HomeComponent,
-    ListComponent
+    ListComponent,
+    CardComponent
   ],
   imports: [
     CommonModule,
