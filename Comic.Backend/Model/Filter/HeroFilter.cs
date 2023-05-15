@@ -4,6 +4,8 @@ namespace Comic.Backend.Model.Filter
 {
     public class HeroFilter
     {
+
+        public int? Id { get; set; }
         public string TextToSearch { get; set; }
         public string ColumnToSort { get; set; } = "created_at desc";
         public int PageSize { get; set; } = 1;

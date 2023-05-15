@@ -1,1 +1,36 @@
-<p>search works!</p>
+<div class="flex flex-column p-2">
+
+    <h3>Search</h3>
+  
+    <mat-form-field>
+      <mat-label>Search a hero</mat-label>
+      <input
+        type="text"
+        matInput
+        [formControl]="searchInput"
+        (input)="searchHero()"
+        [matAutocomplete]="auto"
+      />
+  
+      <mat-autocomplete autoActiveFirstOption
+        #auto="matAutocomplete"
+        (optionSelected)="onSelectedOption( $event )"
+        >
+        <mat-option *ngFor="let character of characters" [value]="character">
+          {{ character.name }}
+        </mat-option>
+  
+        <mat-option
+          *ngIf="characters.length === 0 && searchInput.value && searchInput.value.length > 0"
+          value="">
+          There were no matches for the term: <strong>{{ searchInput.value }}</strong>
+        </mat-option>
+      </mat-autocomplete>
+  
+    </mat-form-field>
+  
+  
+    {{ searchInput.value | json }}
+  
+  
+  </div>

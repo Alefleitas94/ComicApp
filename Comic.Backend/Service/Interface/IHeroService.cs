@@ -7,6 +7,6 @@ namespace Comic.Backend.Service.Interface
     public interface IHeroService
     {
         Task<IEnumerable<Hero>> GetAllAsync(HeroFilter filter);
-        Task<ActionResult<Hero>> GetByIdAsync(int id);
+        Task<Hero> GetByIdAsync(HeroFilter filter);
     }
 }

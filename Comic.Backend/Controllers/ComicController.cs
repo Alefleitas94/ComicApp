@@ -23,19 +23,23 @@ namespace Comic.Backend.Controllers
 
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Hero>>> GetAll([FromQuery]HeroFilter filter = null)
+        public async Task<ActionResult<IEnumerable<Hero>>> GetAll()
         {
-            var products = await _heroService.GetAllAsync(filter);
-            return Ok(products);
+
+            var filter = new HeroFilter();
+
+            var characters = await _heroService.GetAllAsync(filter);
+            return Ok(characters);
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Hero>> GetById(int id)
+        [HttpGet]
+        public async Task<ActionResult<Hero>> GetById([FromQuery] int id)
         {
-            var product = await _heroService.GetByIdAsync(id);
-            if (product == null)
+            var filter = new HeroFilter { Id = id };
+            var character = await _heroService.GetByIdAsync(filter);
+            if (character != null)
             {
-                return Ok(product);
+                return Ok(character);
             }
             else
             {

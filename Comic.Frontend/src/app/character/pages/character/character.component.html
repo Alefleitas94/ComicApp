@@ -1,1 +1,53 @@
-<p>character works!</p>
+<ng-template #divLoading>
+    <mat-grid-list cols="1">
+      <mat-grid-tile>
+        <mat-spinner></mat-spinner>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </ng-template>
+  
+  
+  <div *ngIf="character; else divLoading" class="grid p-2">
+  
+    <mat-card class="col-12 sm:col-6">
+  
+      <mat-card-header>
+        <mat-card-title>{{ character.name }}</mat-card-title>
+        <mat-card-subtitle>{{ character.gender }}</mat-card-subtitle>
+      </mat-card-header>
+  
+  
+      <!-- <img [src]="character | characterImage" [alt]="character.supercharacter" mat-card-image  /> -->
+  
+    </mat-card>
+  
+    <mat-card class="col-12 sm:col-6">
+  
+      <mat-card-header>
+        <mat-card-title>Información</mat-card-title>
+        <mat-card-subtitle>{{ character.name }}</mat-card-subtitle>
+      </mat-card-header>
+  
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item>{{ character.firstAppearance }}</mat-list-item>
+          <mat-list-item>{{ character.createdAt }}</mat-list-item>
+          <mat-list-item>{{ character.publisher }}</mat-list-item>
+        </mat-list>
+  
+        <button
+          mat-button
+          
+          color="warn"
+          (click)="goBack()"
+        >
+          Back
+        </button>
+  
+      </mat-card-content>
+  
+  
+    </mat-card>
+  
+  
+  </div>

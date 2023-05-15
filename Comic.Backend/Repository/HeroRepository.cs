@@ -19,7 +19,7 @@ namespace Comic.Backend.Repository
         public async Task<IEnumerable<Hero>> GetAllAsync(HeroFilter filter)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@TextToSearch", null, DbType.String);
+            parameters.Add("@TextToSearch", filter.TextToSearch, DbType.String);
             parameters.Add("@ColumnToSort", null, DbType.String);
             parameters.Add("@PageIndex", 1, DbType.Int32); // valor predeterminado para PageIndex
             parameters.Add("@PageSize", 10, DbType.Int32); // valor predeterminado para PageSize
@@ -30,9 +30,14 @@ namespace Comic.Backend.Repository
 
         }
 
-        public Task<ActionResult<Hero>> GetByIdAsync(int id)
+        public async Task<Hero> GetByIdAsync(HeroFilter filter)
         {
-            throw new NotImplementedException();
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", filter.Id, DbType.Int64);
+
+            var result = await _db.QueryFirstOrDefaultAsync<Hero>("[dbo].[heroes_getbyid]", parameters, commandType: CommandType.StoredProcedure);
+
+            return result;
         }
     }
 

@@ -8,6 +8,8 @@ import { CharacterRoutingModule } from './character-routing.module';
 import { MaterialModule } from '../material/material.module';
 import { ListComponent } from './pages/list/list.component';
 import { CardComponent } from './components/card/card.component';
+import { CharacterImagePipe } from './pipes/character-image.pipe';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -18,12 +20,14 @@ import { CardComponent } from './components/card/card.component';
     CharacterComponent,
     HomeComponent,
     ListComponent,
-    CardComponent
+    CardComponent,
+    CharacterImagePipe
   ],
   imports: [
     CommonModule,
     CharacterRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class CharacterModule { }

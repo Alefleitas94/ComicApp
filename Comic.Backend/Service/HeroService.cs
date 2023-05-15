@@ -19,9 +19,9 @@ namespace Comic.Backend.Service
             return await _heroRepository.GetAllAsync(filter);
         }
 
-        public async Task<ActionResult<Hero>> GetByIdAsync(int id)
+        public async Task<Hero> GetByIdAsync(HeroFilter filter)
         {
-            return await _heroRepository.GetByIdAsync(id);
+            return await _heroRepository.GetByIdAsync(filter);
         }
     }
 }

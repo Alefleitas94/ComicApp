@@ -1,10 +1,11 @@
 export interface ICharacter {
-    id:              number;
-    name:            string;
-    gender:          Gender;
-    publisher:       Publisher;
+    id: number;
+    name: string;
+    gender: Gender;
+    publisher: Publisher;
     firstAppearance: string;
-    createdAt:       string;
+    createdAt: string;
+    image: string;
 }
 
 export enum Gender {
