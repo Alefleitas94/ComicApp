@@ -17,7 +17,8 @@ export class AddComponent implements OnInit {
   successConfig: MatSnackBarConfig = {
     panelClass: ['green-snackbar'],
     duration: 5000,
-    verticalPosition: 'top'
+    verticalPosition: 'top',
+
   };
   public character?: ICharacter;
   public heroForm = new FormGroup({
@@ -72,14 +73,16 @@ export class AddComponent implements OnInit {
     debugger;
     this._characterService.saveOrEditCharacter(this.currentHero)
       .subscribe((result: GenericResult) => {
-        this.showSnackBar(result.message, this.successConfig)
+        this._router.navigate(['/character/edit', result.id])
+        this.showSnackBar(result.message, this.successConfig);
+
       });
   }
 
 
   showSnackBar(message: string, config: MatSnackBarConfig): void {
-
     this._snackBar.open(message, 'Ok', config)
+
   }
 
 
