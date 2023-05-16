@@ -46,6 +46,26 @@ namespace Comic.Backend.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpPost]
+        public async Task<ActionResult<GenericResult>> SaveCharacter([FromBody] Hero hero)
+        {
+            try
+            {
+                var character = await _heroService.SaveCharacterAsync(hero);
+                if (character != null)
+                {
+                    return Ok(character);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            return BadRequest();
+        }
     }
 }
 

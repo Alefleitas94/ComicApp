@@ -1,10 +1,10 @@
 export interface ICharacter {
-    id: number;
+    id?: number;
     name: string;
     gender: Gender;
     publisher: Publisher;
     firstAppearance: string;
-    createdAt: string;
+    createdAt: Date;
     image: string;
 }
 

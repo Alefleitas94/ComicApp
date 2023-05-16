@@ -8,5 +8,6 @@ namespace Comic.Backend.Repository.Interface
     {
         Task<IEnumerable<Hero>> GetAllAsync(HeroFilter filter);
         Task<Hero> GetByIdAsync(HeroFilter filter);
+        Task<GenericResult> SaveCharacterAsync(Hero hero);
     }
 }

@@ -23,5 +23,11 @@ namespace Comic.Backend.Service
         {
             return await _heroRepository.GetByIdAsync(filter);
         }
+
+        public async Task<GenericResult> SaveCharacterAsync(Hero hero)
+        {
+            return await _heroRepository.SaveCharacterAsync(hero);
+
+        }
     }
 }

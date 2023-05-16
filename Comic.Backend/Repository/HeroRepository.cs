@@ -24,7 +24,7 @@ namespace Comic.Backend.Repository
             parameters.Add("@PageIndex", 1, DbType.Int32); // valor predeterminado para PageIndex
             parameters.Add("@PageSize", 10, DbType.Int32); // valor predeterminado para PageSize
 
-            var result = await _db.QueryAsync<Hero>("[dbo].[heroes_search]", parameters, commandType: CommandType.StoredProcedure);
+            var result = await _db.QueryAsync<Hero>("[hero].[heroes_search]", parameters, commandType: CommandType.StoredProcedure);
 
             return result;
 
@@ -35,7 +35,22 @@ namespace Comic.Backend.Repository
             var parameters = new DynamicParameters();
             parameters.Add("@Id", filter.Id, DbType.Int64);
 
-            var result = await _db.QueryFirstOrDefaultAsync<Hero>("[dbo].[heroes_getbyid]", parameters, commandType: CommandType.StoredProcedure);
+            var result = await _db.QueryFirstOrDefaultAsync<Hero>("[hero].[heroes_getbyid]", parameters, commandType: CommandType.StoredProcedure);
+
+            return result;
+        }
+
+        public async Task<GenericResult> SaveCharacterAsync(Hero hero)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", hero.Id, DbType.Int64);
+            parameters.Add("@Name", hero.Name, DbType.String);
+            parameters.Add("@FirstAppearance", hero.FirstAppearance, DbType.String);
+            parameters.Add("@Publisher", hero.Publisher, DbType.String);
+            parameters.Add("@Gender", hero.Gender, DbType.String);
+            parameters.Add("@CreatedAt", hero.CreatedAt, DbType.DateTime2);
+
+            var result = await _db.QueryFirstOrDefaultAsync<GenericResult>("[hero].[heroes_save]", parameters, commandType: CommandType.StoredProcedure);
 
             return result;
         }

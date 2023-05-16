@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, of } from 'rxjs';
 import { ICharacter } from '../interfaces/character.interface';
-import { ICharacterFilter } from '../interfaces/character-filter.interface';
 import { environments } from 'src/environments/environments';
 
 @Injectable({ providedIn: 'root' })
@@ -25,6 +24,14 @@ export class CharacterService {
       )
   }
 
+  saveOrEditCharacter(character: ICharacter): Observable<any> {
+    return this.httpClient.post<any>(`${this.baseApiUrl}/api/comic/saveCharacter`, character)
+      .pipe(
+        catchError(
+          error => of(undefined)
+        )
+      )
+  }
 
 
 }
