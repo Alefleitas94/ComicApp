@@ -52,10 +52,10 @@ namespace Comic.Backend.Controllers
         {
             try
             {
-                var character = await _heroService.SaveCharacterAsync(hero);
-                if (character != null)
+                var result = await _heroService.SaveCharacterAsync(hero);
+                if (result != null)
                 {
-                    return Ok(character);
+                    return Ok(result);
                 }
 
             }
@@ -65,6 +65,27 @@ namespace Comic.Backend.Controllers
                 throw;
             }
             return BadRequest();
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult<GenericResult>> DeleteCharacter([FromQuery] int id)
+        {
+            try
+            {
+                var result = await _heroService.DeleteCharacterAsync(id);
+                if (result != null)
+                {
+                    return Ok(result);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+            return BadRequest();
+
         }
     }
 }

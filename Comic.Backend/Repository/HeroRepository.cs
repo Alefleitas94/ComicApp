@@ -54,6 +54,17 @@ namespace Comic.Backend.Repository
 
             return result;
         }
+
+
+        public async Task<GenericResult> DeleteCharacterAsync(int id)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", id, DbType.Int64);
+            
+            var result = await _db.QueryFirstOrDefaultAsync<GenericResult>("[hero].[heroes_delete]", parameters, commandType: CommandType.StoredProcedure);
+
+            return result;
+        }
     }
 
 

@@ -10,6 +10,7 @@ import { ListComponent } from './pages/list/list.component';
 import { CardComponent } from './components/card/card.component';
 import { CharacterImagePipe } from './pipes/character-image.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ConfirmDialogComponent } from './components/dialog/confirm-dialog/confirm-dialog.component';
 
 
 
@@ -21,7 +22,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     ListComponent,
     CardComponent,
-    CharacterImagePipe
+    CharacterImagePipe,
+    ConfirmDialogComponent
   ],
   imports: [
     CommonModule,

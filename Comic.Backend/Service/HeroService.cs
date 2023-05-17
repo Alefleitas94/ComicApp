@@ -29,5 +29,11 @@ namespace Comic.Backend.Service
             return await _heroRepository.SaveCharacterAsync(hero);
 
         }
+
+        public async Task<GenericResult> DeleteCharacterAsync(int id)
+        {
+            return await _heroRepository.DeleteCharacterAsync(id);
+
+        }
     }
 }

@@ -33,5 +33,13 @@ export class CharacterService {
       )
   }
 
+  deleteCharacter(id: number): Observable<any> {
+    return this.httpClient.delete<any>(`${this.baseApiUrl}/api/comic/deleteCharacter?id=${id}`)
+      .pipe(
+        catchError(
+          error => of(undefined)
+        )
+      )
+  }
 
 }

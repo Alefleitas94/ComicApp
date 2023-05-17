@@ -3,9 +3,11 @@ import { Gender, ICharacter, Publisher } from '../../interfaces/character.interf
 import { CharacterService } from '../../services/character-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
-import { FormControl, FormGroup } from '@angular/forms';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { FormControl, FormGroup } from '@angular/forms';
 import { GenericResult } from '../../interfaces/generic-result.interface';
+import { ConfirmDialogComponent } from '../../components/dialog/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-add',
@@ -41,7 +43,8 @@ export class AddComponent implements OnInit {
     private _characterService: CharacterService,
     private _activateRoute: ActivatedRoute,
     private _router: Router,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private _dialog: MatDialog
   ) {
 
   }
@@ -79,6 +82,21 @@ export class AddComponent implements OnInit {
       });
   }
 
+
+  onDeleteHero() {
+    if (!this.currentHero.id) throw new Error("Hero is required");
+
+    const dialogRef = this._dialog.open(ConfirmDialogComponent, {
+      data: this.heroForm.value
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+      if (result) {
+        this._characterService.deleteCharacter(this.currentHero.id!)
+      }
+    });
+  }
 
   showSnackBar(message: string, config: MatSnackBarConfig): void {
     this._snackBar.open(message, 'Ok', config)
