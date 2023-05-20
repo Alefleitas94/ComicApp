@@ -60,6 +60,9 @@
     <Folder Include="Security" />
     <Folder Include="Hero\Tables" />
     <Folder Include="Hero\Stored Procedures" />
+    <Folder Include="User" />
+    <Folder Include="User\Tables" />
+    <Folder Include="User\Stored Procedures" />
   </ItemGroup>
   <ItemGroup>
     <!-- Ignorar archivos generados automáticamente -->
@@ -77,5 +80,7 @@
     <Build Include="Hero\Stored Procedures\Hero_Search.sql" />
     <Build Include="Hero\Stored Procedures\Hero_Delete.sql" />
     <Build Include="Hero\Stored Procedures\Hero_GetById.sql" />
+    <Build Include="Security\user.sql" />
+    <Build Include="User\Tables\Users.sql" />
   </ItemGroup>
 </Project>
