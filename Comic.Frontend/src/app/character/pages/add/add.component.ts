@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Gender, ICharacter, Publisher } from '../../interfaces/character.interface';
 import { CharacterService } from '../../services/character-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { filter, switchMap } from 'rxjs';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -90,17 +90,20 @@ export class AddComponent implements OnInit {
       data: this.heroForm.value
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed()
+      .pipe(
+        filter((r: boolean) => r)
+      )
+      .subscribe(result => {
+        if (result) {
+          this._characterService.deleteCharacter(this.currentHero.id!)
+            .subscribe((result: GenericResult) => {
+              this._router.navigate(['/character/list', result.id])
+              this.showSnackBar(result.message, this.successConfig);
 
-      if (result) {
-        this._characterService.deleteCharacter(this.currentHero.id!)
-        .subscribe((result: GenericResult) => {
-          this._router.navigate(['/character/list', result.id])
-          this.showSnackBar(result.message, this.successConfig);
-  
-        });
-      }
-    });
+            });
+        }
+      });
   }
 
   showSnackBar(message: string, config: MatSnackBarConfig): void {
