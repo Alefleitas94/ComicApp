@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [hero].[Hero_Delete](
+﻿CREATE PROCEDURE [hero].[heroes_delete](
 	@Id INT
 )
 AS
@@ -17,7 +17,6 @@ BEGIN
 	SET NOCOUNT ON;
 	BEGIN TRY 
 		BEGIN TRANSACTION
-
 			BEGIN
 					IF(@IsThereAnyHero = 0)
 						BEGIN
@@ -51,7 +50,9 @@ BEGIN
        SET @Message = CONCAT(ERROR_MESSAGE(), ' -Linea ' ,CONVERT(VARCHAR(10), @Line))
   
    END CATCH
-
+   SELECT Id = @Id,
+		  [Message] = @Message,
+		  IsSucces = @IsSuccess
 END
 GO
 
