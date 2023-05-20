@@ -1,0 +1,7 @@
+# Ignorar archivos y directorios generados por el proyecto DB SQL en Visual Studio
+bin/
+obj/
+*.dbmdl
+*.dbproj.schemaview
+*.sqlproj.user
+fileContentIndex
