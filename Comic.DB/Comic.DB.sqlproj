@@ -61,6 +61,15 @@
     <Folder Include="Hero\Tables" />
     <Folder Include="Hero\Stored Procedures" />
   </ItemGroup>
+<ItemGroup>
+  <!-- Ignorar archivos generados automáticamente -->
+  <None Remove="bin\**" />
+  <None Remove="obj\**" />
+  <None Remove="*.dbmdl" />
+  <None Remove="*.dbproj.schemaview" />
+  <None Remove="*.sqlproj.user" />
+  <None Remove="fileContentIndex" />
+</ItemGroup>
   <ItemGroup>
     <Build Include="Security\hero.sql" />
     <Build Include="Hero\Tables\Hero.sql" />
