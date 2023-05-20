@@ -94,6 +94,11 @@ export class AddComponent implements OnInit {
 
       if (result) {
         this._characterService.deleteCharacter(this.currentHero.id!)
+        .subscribe((result: GenericResult) => {
+          this._router.navigate(['/character/list', result.id])
+          this.showSnackBar(result.message, this.successConfig);
+  
+        });
       }
     });
   }
