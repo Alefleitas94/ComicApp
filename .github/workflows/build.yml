@@ -12,38 +12,39 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
+          ref: main
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       - name: Set up JDK 11
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v2
         with:
-          java-version: 1.11
+          java-version: '11'
       - name: Cache SonarQube packages
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: ~/sonar/cache  # Use / as separator for paths in Windows
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
       - name: Cache SonarQube scanner
         id: cache-sonar-scanner
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: ./.sonar/scanner  # Use / as separator for paths in Windows
           key: ${{ runner.os }}-sonar-scanner
           restore-keys: ${{ runner.os }}-sonar-scanner
       - name: Install SonarQube scanner
         if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
-        shell: powershell
         run: |
-          New-Item -Path ./.sonar/scanner -ItemType Directory
-          dotnet tool install dotnet-sonarscanner --tool-path ./.sonar/scanner
-          # Add the tool path to the PATH so it's accessible in the next steps
-          echo "::add-path::./.sonar/scanner"
+          mkdir -p ./.sonar/scanner
+          Invoke-WebRequest -Uri https://github.com/SonarSource/sonar-scanner-msbuild/releases/download/5.2.1.31210/sonar-scanner-msbuild-5.2.1.31210-netcoreapp2.0.zip -OutFile sonar-scanner-msbuild.zip
+          Expand-Archive -Path sonar-scanner-msbuild.zip -DestinationPath ./.sonar/scanner
+      - name: Add SonarScanner to PATH
+        run: |
+          echo "##[add-path]${{ github.workspace }}/.sonar/scanner"
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-        shell: powershell
         run: |
-          dotnet-sonarscanner begin /k:"ComicApi" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}"
+          ./.sonar/scanner/sonar-scanner-4.6.2.2472/bin/sonar-scanner.bat begin /k:"ComicApi" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}"
           cd Comic.Backend  # Change to the directory with the solution
           dotnet build
-          dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+          ./.sonar/scanner/sonar-scanner-4.6.2.2472/bin/sonar-scanner.bat end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
