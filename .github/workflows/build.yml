@@ -40,7 +40,7 @@ jobs:
           Expand-Archive -Path sonar-scanner-msbuild.zip -DestinationPath ./.sonar/scanner
       - name: Load environment variables
         run: |
-          env.bat env-vars
+          Get-Content env-vars | ForEach-Object { $line = $_.Split("="); Set-Item -Path "env:\$($line[0])" -Value "$($line[1])" }
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
