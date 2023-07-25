@@ -9,6 +9,8 @@
         public string FirstAppearance { get; set; }
         public DateTime? CreatedAt { get; set; }
         public string Image { get; set; } = "";
+        public string ImageHero { get; set; } = "";
+
     }
 
 }
