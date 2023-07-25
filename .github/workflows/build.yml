@@ -45,7 +45,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         run: |
-          ./.sonar/scanner/sonar-scanner-4.6.2.2472/bin/sonar-scanner.bat begin /k:"ComicApi" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}"
+          cmd /c .\.sonar\scanner\sonar-scanner-4.6.2.2472\bin\sonar-scanner.bat begin /k:"ComicApi" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}"
           cd Comic.Backend  # Change to the directory with the solution
           dotnet build
-          ./.sonar/scanner/sonar-scanner-4.6.2.2472/bin/sonar-scanner.bat end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+          cmd /c .\.sonar\scanner\sonar-scanner-4.6.2.2472\bin\sonar-scanner.bat end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+
